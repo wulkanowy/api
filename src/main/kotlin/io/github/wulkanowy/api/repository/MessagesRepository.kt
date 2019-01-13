@@ -1,8 +1,6 @@
 package io.github.wulkanowy.api.repository
 
-import io.github.wulkanowy.api.messages.Message
-import io.github.wulkanowy.api.messages.Recipient
-import io.github.wulkanowy.api.messages.ReportingUnit
+import io.github.wulkanowy.api.messages.*
 import io.github.wulkanowy.api.service.MessagesService
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -78,6 +76,16 @@ class MessagesRepository(private val api: MessagesService) {
 
     fun getMessage(messageId: Int, folderId: Int, read: Boolean, id: Int?): Single<String> {
         return api.getMessage(messageId, folderId, read, id).map { it.data?.content }
+    }
+
+    fun sendMessage(subject: String, content: String, recipients: List<Recipient>): Single<Message> {
+        return api.sendMessage(SendMessageRequest(
+                Incomming(
+                        recipients = recipients,
+                        subject = subject,
+                        content = content
+                )
+        )).map { it.data }
     }
 
     private fun getDate(date: LocalDateTime?): String {
