@@ -80,7 +80,7 @@ class MessagesRepository(private val api: MessagesService) {
 
     fun sendMessage(subject: String, content: String, recipients: List<Recipient>): Single<SentMessage> {
         return api.sendMessage(SendMessageRequest(
-                Incomming(
+                Incoming(
                         recipients = recipients,
                         subject = subject,
                         content = content

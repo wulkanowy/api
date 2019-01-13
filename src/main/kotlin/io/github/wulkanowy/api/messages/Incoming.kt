@@ -2,7 +2,7 @@ package io.github.wulkanowy.api.messages
 
 import com.google.gson.annotations.SerializedName
 
-data class Incomming(
+data class Incoming(
 
         @SerializedName("Adresaci")
         val recipients: List<Recipient>,
