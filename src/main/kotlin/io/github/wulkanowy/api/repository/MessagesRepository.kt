@@ -59,7 +59,7 @@ class MessagesRepository(private val api: MessagesService) {
                         }.ifEmpty {
                             listOf(Pair(
                                     Recipient("unknown", message.recipient?.split(" -")?.first() ?: "unknown",
-                                            9999, 9999, 2), "unknown"
+                                            9999, 9999, 2, "unknown"), "unknown"
                             ))
                         })
                     }.map {

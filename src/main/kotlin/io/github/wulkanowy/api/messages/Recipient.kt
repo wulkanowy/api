@@ -17,5 +17,8 @@ data class Recipient(
         val reportingUnitId: Int,
 
         @SerializedName("Rola")
-        val role: Int
+        val role: Int,
+
+        @SerializedName("Hash")
+        val hash: String
 )
