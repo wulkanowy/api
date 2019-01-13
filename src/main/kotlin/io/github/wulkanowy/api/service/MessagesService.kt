@@ -1,10 +1,7 @@
 package io.github.wulkanowy.api.service
 
 import io.github.wulkanowy.api.ApiResponse
-import io.github.wulkanowy.api.messages.Message
-import io.github.wulkanowy.api.messages.Recipient
-import io.github.wulkanowy.api.messages.ReportingUnit
-import io.github.wulkanowy.api.messages.SendMessageRequest
+import io.github.wulkanowy.api.messages.*
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -35,5 +32,5 @@ interface MessagesService {
     ): Single<ApiResponse<Message>>
 
     @POST("NowaWiadomosc.mvc/InsertWiadomosc")
-    fun sendMessage(@Body sendMessageRequest: SendMessageRequest): Single<ApiResponse<Message>>
+    fun sendMessage(@Body sendMessageRequest: SendMessageRequest): Single<ApiResponse<SentMessage>>
 }

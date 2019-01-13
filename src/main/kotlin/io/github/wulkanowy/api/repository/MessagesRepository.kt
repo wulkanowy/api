@@ -78,7 +78,7 @@ class MessagesRepository(private val api: MessagesService) {
         return api.getMessage(messageId, folderId, read, id).map { it.data?.content }
     }
 
-    fun sendMessage(subject: String, content: String, recipients: List<Recipient>): Single<Message> {
+    fun sendMessage(subject: String, content: String, recipients: List<Recipient>): Single<SentMessage> {
         return api.sendMessage(SendMessageRequest(
                 Incomming(
                         recipients = recipients,
