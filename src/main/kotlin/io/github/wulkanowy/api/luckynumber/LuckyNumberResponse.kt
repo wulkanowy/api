@@ -1,4 +1,4 @@
-package io.github.wulkanowy.api.lucky_number
+package io.github.wulkanowy.api.luckynumber
 
 import pl.droidsonroids.jspoon.annotation.Selector
 

@@ -1,4 +1,4 @@
-package io.github.wulkanowy.api.lucky_number
+package io.github.wulkanowy.api.luckynumber
 
 import io.github.wulkanowy.api.BaseLocalTest
 import io.github.wulkanowy.api.repository.HomepageRepository
