@@ -11,7 +11,7 @@ import io.github.wulkanowy.api.interceptor.NotLoggedInErrorInterceptor
 import io.github.wulkanowy.api.interceptor.StudentAndParentInterceptor
 import io.github.wulkanowy.api.interceptor.UserAgentInterceptor
 import io.github.wulkanowy.api.login.NotLoggedInException
-import io.github.wulkanowy.api.register.HomepageResponse
+import io.github.wulkanowy.api.register.SendCertificateResponse
 import io.github.wulkanowy.api.repository.LoginRepository
 import io.reactivex.Flowable
 import okhttp3.Interceptor
@@ -144,7 +144,7 @@ class ServiceManager(
                 }
     }
 
-    private fun getLoginHelper(): Flowable<HomepageResponse> {
+    private fun getLoginHelper(): Flowable<SendCertificateResponse> {
         return LoginRepository(loginType, schema, host, symbol, cookies, getLoginService())
                 .login(email, password)
                 .toFlowable()
