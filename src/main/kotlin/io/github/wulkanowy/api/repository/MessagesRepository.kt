@@ -1,6 +1,5 @@
 package io.github.wulkanowy.api.repository
 
-import io.github.wulkanowy.api.messages.Incoming
 import io.github.wulkanowy.api.messages.Message
 import io.github.wulkanowy.api.messages.Recipient
 import io.github.wulkanowy.api.messages.ReportingUnit
@@ -84,7 +83,7 @@ class MessagesRepository(private val api: MessagesService) {
     fun sendMessage(subject: String, content: String, recipients: List<Recipient>): Single<SentMessage> {
         return api.sendMessage(
             SendMessageRequest(
-                Incoming(
+                SendMessageRequest.Incoming(
                     recipients = recipients,
                     subject = subject,
                     content = content
