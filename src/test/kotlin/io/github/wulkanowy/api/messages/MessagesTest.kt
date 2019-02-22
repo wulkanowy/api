@@ -160,7 +160,7 @@ class MessagesTest : BaseLocalTest() {
                 listOf(Recipient("0", "Kowalski Jan", 0, 0, 2, "hash"))
         ).blockingGet()
 
-        server.takeRequest().headers
+        server.takeRequest()
 
         val parser = JsonParser()
         val expected = parser.parse(MessagesTest::class.java.getResource("NowaWiadomosc.json").readText())
