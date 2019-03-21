@@ -174,7 +174,7 @@ class MessagesTest : BaseLocalTest() {
         server.enqueue(MockResponse().setBody("{\"success\": true}"))
         server.start(3000)
 
-        api.deleteMessage(74, 1).blockingGet()
+        assertEquals(api.deleteMessage(74, 1).blockingGet(), true)
 
         val expected = jsonParser.parse(MessagesTest::class.java.getResource("UsunWiadomosc.json").readText())
         val actual = jsonParser.parse(server.takeRequest().body.readUtf8())

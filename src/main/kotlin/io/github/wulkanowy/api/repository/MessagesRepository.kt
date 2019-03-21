@@ -1,6 +1,5 @@
 package io.github.wulkanowy.api.repository
 
-import io.github.wulkanowy.api.ApiResponse
 import io.github.wulkanowy.api.getScriptParam
 import io.github.wulkanowy.api.messages.DeleteMessageRequest
 import io.github.wulkanowy.api.messages.Message
@@ -89,13 +88,13 @@ class MessagesRepository(private val api: MessagesService) {
         }
     }
 
-    fun deleteMessage(messageId: Int, folderId: Int): Single<ApiResponse<Nothing>> {
+    fun deleteMessage(messageId: Int, folderId: Int): Single<Boolean> {
         return api.deleteMessage(
             DeleteMessageRequest(
                 messageId = messageId,
                 folderId = folderId
             )
-        )
+        ).map { it.success }
     }
 
     private fun String.normalizeRecipient(): String {
