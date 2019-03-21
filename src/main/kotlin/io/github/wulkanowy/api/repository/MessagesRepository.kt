@@ -101,7 +101,6 @@ class MessagesRepository(private val api: MessagesService) {
                 getScriptParam("appGuid", res),
                 getScriptParam("version", res)
             ).map { it.success }
-
         }
     }
 
