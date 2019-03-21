@@ -1,6 +1,7 @@
 package io.github.wulkanowy.api.service
 
 import io.github.wulkanowy.api.ApiResponse
+import io.github.wulkanowy.api.messages.DeleteMessageRequest
 import io.github.wulkanowy.api.messages.Message
 import io.github.wulkanowy.api.messages.Recipient
 import io.github.wulkanowy.api.messages.ReportingUnit
@@ -57,4 +58,7 @@ interface MessagesService {
         @Header("X-V-AppGuid") appGuid: String,
         @Header("X-V-AppVersion") appVersion: String
     ): Single<ApiResponse<SentMessage>>
+
+    @POST("Wiadomosc.mvc/UsunWiadomosc")
+    fun deleteMessage(@Body deleteMessageRequest: DeleteMessageRequest): Single<ApiResponse<Nothing>>
 }

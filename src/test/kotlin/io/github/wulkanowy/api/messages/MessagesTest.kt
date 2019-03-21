@@ -1,6 +1,5 @@
 package io.github.wulkanowy.api.messages
 
-import com.google.gson.JsonParser
 import io.github.wulkanowy.api.BaseLocalTest
 import io.github.wulkanowy.api.repository.MessagesRepository
 import io.github.wulkanowy.api.service.MessagesService
@@ -157,10 +156,9 @@ class MessagesTest : BaseLocalTest() {
 
         server.takeRequest()
 
-        val parser = JsonParser()
-        val expected = parser.parse(MessagesTest::class.java.getResource("NowaWiadomosc.json").readText())
+        val expected = jsonParser.parse(MessagesTest::class.java.getResource("NowaWiadomosc.json").readText())
         val request = server.takeRequest()
-        val actual = parser.parse(request.body.readUtf8())
+        val actual = jsonParser.parse(request.body.readUtf8())
 
         assertEquals(expected, actual)
         assertEquals(
@@ -169,5 +167,18 @@ class MessagesTest : BaseLocalTest() {
         )
         assertEquals("877c4a726ad61667f4e2237f0cf6307a", request.getHeader("X-V-AppGuid"))
         assertEquals("19.02.0001.32324", request.getHeader("X-V-AppVersion"))
+    }
+
+    @Test
+    fun deleteMessageTest() {
+        server.enqueue(MockResponse().setBody("{\"success\": true}"))
+        server.start(3000)
+
+        api.deleteMessage(74, 1).blockingGet()
+
+        val expected = jsonParser.parse(MessagesTest::class.java.getResource("UsunWiadomosc.json").readText())
+        val actual = jsonParser.parse(server.takeRequest().body.readUtf8())
+
+        assertEquals(expected, actual)
     }
 }

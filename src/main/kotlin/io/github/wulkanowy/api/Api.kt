@@ -254,6 +254,8 @@ class Api {
 
     fun sendMessage(subject: String, content: String, recipients: List<Recipient>) = messages.sendMessage(subject, content, recipients)
 
+    fun deleteMessage(messageId: Int, folderId: Int) = messages.deleteMessage(messageId, folderId)
+
     fun getTimetable(startDate: LocalDate, endDate: LocalDate? = null) =
         if (useNewStudent) student.getTimetable(startDate, endDate) else snp.getTimetable(startDate, endDate)
 
