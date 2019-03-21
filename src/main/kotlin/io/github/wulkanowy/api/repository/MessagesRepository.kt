@@ -89,12 +89,18 @@ class MessagesRepository(private val api: MessagesService) {
     }
 
     fun deleteMessage(messageId: Int, folderId: Int): Single<Boolean> {
-        return api.deleteMessage(
-            DeleteMessageRequest(
-                messageId = messageId,
-                folderId = folderId
-            )
-        ).map { it.success }
+        return api.getStart().flatMap { res ->
+            api.deleteMessage(
+                DeleteMessageRequest(
+                    messageId = messageId,
+                    folderId = folderId
+                ),
+                getScriptParam("antiForgeryToken", res),
+                getScriptParam("appGuid", res),
+                getScriptParam("version", res)
+            ).map { it.success }
+
+        }
     }
 
     private fun String.normalizeRecipient(): String {

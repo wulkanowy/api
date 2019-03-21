@@ -60,5 +60,10 @@ interface MessagesService {
     ): Single<ApiResponse<SentMessage>>
 
     @POST("Wiadomosc.mvc/UsunWiadomosc")
-    fun deleteMessage(@Body deleteMessageRequest: DeleteMessageRequest): Single<ApiResponse<Nothing>>
+    fun deleteMessage(
+        @Body deleteMessageRequest: DeleteMessageRequest,
+        @Header("X-V-RequestVerificationToken") token: String,
+        @Header("X-V-AppGuid") appGuid: String,
+        @Header("X-V-AppVersion") appVersion: String
+    ): Single<ApiResponse<Nothing>>
 }
