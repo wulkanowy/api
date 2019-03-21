@@ -175,7 +175,7 @@ class MessagesTest : BaseLocalTest() {
         server.enqueue(MockResponse().setBody("{\"success\": true}"))
         server.start(3000)
 
-        assertEquals(api.deleteMessage(74, 1).blockingGet(), true)
+        assertEquals(api.deleteMessages(listOf(Pair(74, 1), Pair(69, 2))).blockingGet(), true)
 
         server.takeRequest()
 

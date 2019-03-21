@@ -88,13 +88,15 @@ class MessagesRepository(private val api: MessagesService) {
         }
     }
 
-    fun deleteMessage(messageId: Int, folderId: Int): Single<Boolean> {
+    fun deleteMessages(messages: List<Pair<Int, Int>>): Single<Boolean> {
         return api.getStart().flatMap { res ->
             api.deleteMessage(
-                DeleteMessageRequest(
-                    messageId = messageId,
-                    folderId = folderId
-                ),
+                messages.map { (messageId, folderId) ->
+                    DeleteMessageRequest(
+                        messageId = messageId,
+                        folderId = folderId
+                    )
+                },
                 getScriptParam("antiForgeryToken", res),
                 getScriptParam("appGuid", res),
                 getScriptParam("version", res)

@@ -61,7 +61,7 @@ interface MessagesService {
 
     @POST("Wiadomosc.mvc/UsunWiadomosc")
     fun deleteMessage(
-        @Body deleteMessageRequest: DeleteMessageRequest,
+        @Body deleteMessageRequests: List<DeleteMessageRequest>,
         @Header("X-V-RequestVerificationToken") token: String,
         @Header("X-V-AppGuid") appGuid: String,
         @Header("X-V-AppVersion") appVersion: String
