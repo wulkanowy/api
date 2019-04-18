@@ -196,8 +196,8 @@ class AttendanceTest : BaseLocalTest() {
     }
 
     @Test
-    fun excuseForMissing() {
-        getStudentRepo(AttendanceTest::class.java, "Usprawiedliwione.json").excuseForMissing(
+    fun excuseForAbsence() {
+        getStudentRepo(AttendanceTest::class.java, "Usprawiedliwione.json").excuseForAbsence(
             absents = listOf(
                 Absent(
                     date = LocalDateTime.of(2019, 2, 11, 15, 53, 9),

@@ -138,8 +138,8 @@ class StudentRepository(private val api: StudentService) {
         }
     }
 
-    fun excuseForMissing(absents: List<Absent>, content: String?): Single<Boolean> {
-        return api.excuseForMissing(
+    fun excuseForAbsence(absents: List<Absent>, content: String?): Single<Boolean> {
+        return api.excuseForAbsence(
             AttendanceExcuseRequest(
                 AttendanceExcuseRequest.Excuse(
                     absents = absents.map {

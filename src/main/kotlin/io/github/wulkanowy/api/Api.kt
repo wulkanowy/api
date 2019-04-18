@@ -206,7 +206,7 @@ class Api {
 
     fun getAttendanceSummary(subjectId: Int? = -1) = if (useNewStudent) student.getAttendanceSummary(subjectId) else snp.getAttendanceSummary(subjectId)
 
-    fun excuseForMissing(absents: List<Absent>, content: String? = null) = student.excuseForMissing(absents, content)
+    fun excuseForAbsence(absents: List<Absent>, content: String? = null) = student.excuseForAbsence(absents, content)
 
     fun getSubjects() = if (useNewStudent) student.getSubjects() else snp.getSubjects()
 

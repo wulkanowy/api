@@ -66,7 +66,7 @@ interface StudentService {
     fun getAttendanceSubjects(): Single<ApiResponse<List<Subject>>>
 
     @POST("Usprawiedliwienia.mvc/Post")
-    fun excuseForMissing(@Body attendanceExcuseRequest: AttendanceExcuseRequest): Single<ApiResponse<Nothing>>
+    fun excuseForAbsence(@Body attendanceExcuseRequest: AttendanceExcuseRequest): Single<ApiResponse<Nothing>>
 
     @POST("EgzaminyZewnetrzne.mvc/Get")
     fun getExternalExaminations()
