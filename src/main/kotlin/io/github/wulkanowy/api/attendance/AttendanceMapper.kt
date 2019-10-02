@@ -43,7 +43,8 @@ fun Single<AttendanceResponse?>.mapAttendanceList(start: LocalDate, end: LocalDa
                 excusable = excuseActive && (absence || lateness) && !excused && sentExcuse == null
                 name = (values().singleOrNull { category -> category.id == categoryId } ?: UNKNOWN).title
                 number = it.number
-                excuseStatus = sentExcuse?.status
+                if (sentExcuse != null)
+                    excuseStatus = SentExcuse.Status.getByValue(sentExcuse.status)
             }
         }
     }.filter {
