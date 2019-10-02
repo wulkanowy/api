@@ -111,7 +111,6 @@ class StudentRepository(private val api: StudentService) {
                         content = content
                     )
                 )
-            ).compose(ErrorHandlerTransformer()).map { r -> r.success }
             )
         }.compose(ErrorHandlerTransformer()).map { it.success }
     }
