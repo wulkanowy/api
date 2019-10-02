@@ -18,10 +18,5 @@ class SentExcuse {
         WAITING(0),
         ACCEPTED(1),
         DENIED(2);
-
-        companion object {
-            private val values = values();
-            fun getByValue(value: Int) = values.firstOrNull { it.id == value }
-        }
     }
 }

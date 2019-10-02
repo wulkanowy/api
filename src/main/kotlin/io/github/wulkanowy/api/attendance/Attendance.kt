@@ -41,7 +41,7 @@ class Attendance {
 
     var excusable: Boolean = false
 
-    var excuseStatus: SentExcuse.Status? = null
+    var excuseStatus: Int? = null
 
     object Types {
         const val PRESENCE = "x-obecnosc"

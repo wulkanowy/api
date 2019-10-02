@@ -42,7 +42,7 @@ class AttendanceTest : BaseLocalTest() {
             assertEquals("Obecność", name)
             assertTrue(presence)
             assertFalse(excused)
-            assertEquals(SentExcuse.Status.WAITING, excuseStatus)
+            assertEquals(SentExcuse.Status.WAITING.id, excuseStatus)
 
             assertFalse(absence)
             assertFalse(exemption)
@@ -63,7 +63,7 @@ class AttendanceTest : BaseLocalTest() {
             assertEquals("Nieobecność nieusprawiedliwiona", name)
             assertTrue(absence)
             assertFalse(excused)
-            assertEquals(SentExcuse.Status.ACCEPTED, excuseStatus)
+            assertEquals(SentExcuse.Status.ACCEPTED.id, excuseStatus)
 
             assertFalse(exemption)
             assertFalse(presence)
@@ -84,7 +84,7 @@ class AttendanceTest : BaseLocalTest() {
             assertEquals("Nieobecność usprawiedliwiona", name)
             assertTrue(absence)
             assertTrue(excused)
-            assertEquals(SentExcuse.Status.DENIED, excuseStatus)
+            assertEquals(SentExcuse.Status.DENIED.id, excuseStatus)
 
             assertFalse(exemption)
             assertFalse(presence)
