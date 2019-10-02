@@ -112,7 +112,8 @@ class StudentRepository(private val api: StudentService) {
                     )
                 )
             ).compose(ErrorHandlerTransformer()).map { r -> r.success }
-        }
+            )
+        }.compose(ErrorHandlerTransformer()).map { it.success }
     }
 
     fun getSubjects(): Single<List<Subject>> {
