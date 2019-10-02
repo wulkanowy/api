@@ -40,7 +40,7 @@ fun Single<AttendanceResponse?>.mapAttendanceList(start: LocalDate, end: LocalDa
                 lateness = a.categoryId == EXCUSED_LATENESS.id || a.categoryId == UNEXCUSED_LATENESS.id
                 excused = a.categoryId == ABSENCE_EXCUSED.id || a.categoryId == EXCUSED_LATENESS.id
                 exemption = a.categoryId == EXEMPTION.id
-                excusable = excuseActive && (absence || lateness) && !excused
+                excusable = excuseActive && (absence || lateness) && !excused && sentExcuse == null
                 name = (values().singleOrNull { category -> category.id == categoryId } ?: UNKNOWN).title
                 number = it.number
                 excuseStatus = sentExcuse?.status

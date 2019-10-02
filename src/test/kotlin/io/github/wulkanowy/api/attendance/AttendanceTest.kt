@@ -69,7 +69,7 @@ class AttendanceTest : BaseLocalTest() {
             assertFalse(presence)
             assertFalse(lateness)
             assertFalse(deleted)
-            assertTrue(excusable)
+            assertFalse(excusable)
         }
     }
 
