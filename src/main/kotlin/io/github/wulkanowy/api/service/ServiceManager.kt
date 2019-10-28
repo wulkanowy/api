@@ -8,6 +8,7 @@ import io.github.wulkanowy.api.OkHttpClientBuilderFactory
 import io.github.wulkanowy.api.grades.DateDeserializer
 import io.github.wulkanowy.api.grades.GradeDate
 import io.github.wulkanowy.api.interceptor.ErrorInterceptor
+import io.github.wulkanowy.api.interceptor.ForceCacheInterceptor
 import io.github.wulkanowy.api.interceptor.NotLoggedInErrorInterceptor
 import io.github.wulkanowy.api.interceptor.StudentAndParentInterceptor
 import io.github.wulkanowy.api.interceptor.UserAgentInterceptor
@@ -15,6 +16,7 @@ import io.github.wulkanowy.api.login.LoginHelper
 import io.github.wulkanowy.api.login.NotLoggedInException
 import io.github.wulkanowy.api.register.SendCertificateResponse
 import io.reactivex.Flowable
+import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.JavaNetCookieJar
 import okhttp3.OkHttpClient
@@ -25,6 +27,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.create
+import java.io.File
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.util.concurrent.TimeUnit.SECONDS
@@ -41,6 +44,7 @@ class ServiceManager(
     private val schoolSymbol: String,
     private val studentId: Int,
     private val diaryId: Int,
+    private val cacheDir: File?,
     androidVersion: String,
     buildTag: String
 ) {
@@ -63,7 +67,8 @@ class ServiceManager(
         Pair(HttpLoggingInterceptor().setLevel(logLevel), true),
         Pair(ErrorInterceptor(), false),
         Pair(NotLoggedInErrorInterceptor(loginType), false),
-        Pair(UserAgentInterceptor(androidVersion, buildTag), false)
+        Pair(UserAgentInterceptor(androidVersion, buildTag), false),
+        Pair(ForceCacheInterceptor(), true)
     )
 
     fun setInterceptor(interceptor: Interceptor, network: Boolean = false, index: Int = -1) {
@@ -144,6 +149,7 @@ class ServiceManager(
             .callTimeout(25, SECONDS)
             .cookieJar(if (!separateJar) JavaNetCookieJar(cookies) else JavaNetCookieJar(CookieManager()))
             .apply {
+                cacheDir?.let { cache(Cache(cacheDir, 10 * 1024 * 1024)) }
                 interceptors.forEach {
                     if (it.first is ErrorInterceptor || it.first is NotLoggedInErrorInterceptor) {
                         if (it.first is NotLoggedInErrorInterceptor && loginIntercept) addInterceptor(it.first)

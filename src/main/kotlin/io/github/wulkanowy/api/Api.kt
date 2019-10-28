@@ -18,6 +18,7 @@ import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
+import java.io.File
 
 class Api {
 
@@ -107,6 +108,12 @@ class Api {
             field = value
         }
 
+    var cacheDir: File? = null
+        set(value) {
+            if (field != value) changeManager.reset()
+            field = value
+        }
+
     // TODO: refactor
     enum class LoginType {
         AUTO,
@@ -131,7 +138,7 @@ class Api {
     private val okHttpFactory by lazy { OkHttpClientBuilderFactory() }
 
     private val serviceManager by resettableLazy(changeManager) {
-        ServiceManager(okHttpFactory, logLevel, loginType, schema, host, normalizedSymbol, email, password, schoolSymbol, studentId, diaryId, androidVersion, buildTag)
+        ServiceManager(okHttpFactory, logLevel, loginType, schema, host, normalizedSymbol, email, password, schoolSymbol, studentId, diaryId, cacheDir, androidVersion, buildTag)
             .apply {
                 appInterceptors.forEach {
                     setInterceptor(it.value.first, it.value.second, it.key)
