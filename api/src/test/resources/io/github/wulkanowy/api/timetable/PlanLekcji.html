@@ -4,39 +4,39 @@
     <meta charset="utf-8">
     <title>Witryna ucznia i rodzica – Plan lekcji</title>
     <style>
-      table, th, td {
-        border: 1px solid;
-        border-collapse: collapse;
-      }
-      table td > div:not(:last-child) {
-        border-bottom: 5px solid silver;
-        padding-bottom: 5px;
-        margin-bottom: 5px;
-      }
-      table td div span:nth-child(1) {
-        display: block;
-      }
-      table span {
-        font-size: smaller;
-        display: block;
-      }
-      .x-treelabel-ppl {
-        background: #99f;
-        font-style: italic;
-      }
-      .x-treelabel-rlz {
-        background: #f3a;
-      }
-      .x-treelabel-inv {
-        background: #f00;
-      }
-      .x-treelabel-zas {
-        background: #0f0;
-      }
-      table span:not([class]),
-      table span[class=""] {
-        background: #999;
-      }
+        table, th, td {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        table td > div:not(:last-child) {
+            border-bottom: 5px solid silver;
+            padding-bottom: 5px;
+            margin-bottom: 5px;
+        }
+        table td div span:nth-child(1) {
+            display: block;
+        }
+        table span {
+            font-size: smaller;
+            display: block;
+        }
+        .x-treelabel-ppl {
+            background: #99f;
+            font-style: italic;
+        }
+        .x-treelabel-rlz {
+            background: #f3a;
+        }
+        .x-treelabel-inv {
+            background: #f00;
+        }
+        .x-treelabel-zas {
+            background: #0f0;
+        }
+        table span:not([class]),
+        table span[class=""] {
+            background: #999;
+        }
     </style>
 </head>
 <body>
@@ -218,7 +218,7 @@
                 </td>
                 <td>
                     <!-- @see TimetableTest#getLesson_invAndChange() -->
-                    <!--Lekcja bez podziału na grupy, z przeniesioną starą (div1) i zastępstwem (div2)-->
+                    <!--Lekcja bez podziału na grupy, z przeniesioną starą (div1) i zastępstwem (div2)-->
                     <div>
                         <span class='x-treelabel-ppl x-treelabel-inv'>Matematyka</span>
                         <span class='x-treelabel-ppl x-treelabel-inv'></span>
@@ -294,7 +294,22 @@
                         <span class="x-treelabel-rlz">(przeniesiona z lekcji 7, 30.04.2019)</span>
                     </div>
                 </td>
-                <td></td>
+                <td>
+                    <!-- @see TimetableTest#getLesson_buttonWithChanges2() -->
+                    <div>
+                        <span class="">Administracja i eksploatacja systemów komputerowych, urządzeń peryferyjnych i lokalnych sieci komputerowych</span>
+                        <span class=""></span>
+                        <span class=""></span>
+                    </div>
+                    <div>
+                        <span class="x-treelabel-ppl x-treelabel-inv">Podstawy informatyki [2/2]</span>
+                        <span class="x-treelabel-ppl x-treelabel-inv"> </span>
+                        <span class="x-treelabel-ppl x-treelabel-inv">(Imię i nazwisko nauczyciela, który miał mieć z nami zajęcia)</span>
+                        <span class="x-treelabel-ppl x-treelabel-inv">125</span>
+                    </div>
+                    <button type="button" class="uwaga-btn">Uwaga</button>
+                    <div class="uwaga-panel" style="display: block;">z grupą - p. (Nazwisko nauczyciela, który ma zajęcia z drugą grupą)</div>
+                </td>
                 <td></td>
                 <td></td>
                 <td></td>
